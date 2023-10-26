@@ -8,7 +8,7 @@ const Scan = () => {
 
   const [delay,setDelay] = useState(100)
   const [result,setResult] = useState('No result')
-
+  const [cameramode,setCameraMode] = useState('front')
   const [isFound,setIsFound] = useState(false)
 
   const previewStyle = {
@@ -19,12 +19,10 @@ const Scan = () => {
 
   const handleScan = (data) =>{
     if(data){
-      console.log(data.text)
       setResult(data.text)
       setIsFound(true)
     }
 
-    console.log(data)
 
   }
   const handleError = (err) =>{
@@ -32,8 +30,8 @@ const Scan = () => {
   }
 
 
-  const toggleFacingMode = () => {
-    setFacingMode((currentMode) => (currentMode === 'front' ? 'rear' : 'front'));
+  const toggleCameraMode = () => {
+    setCameraMode((currentMode) => (currentMode === 'front' ? 'rear' : 'front'));
   };
 
   const HandleRescan = ()=>{
@@ -47,11 +45,12 @@ const Scan = () => {
         <div className=''>
         {!isFound && (
           <div className='text-center'>
-            <div className=' mb-4'><Button className='btn btn-primary'  onClick={toggleFacingMode}><MdOutlineCameraswitch className=' fs-4' /></Button ></div>
+            <div className=' mb-4'><Button className='btn btn-primary'  onClick={toggleCameraMode}><MdOutlineCameraswitch className=' fs-4' /></Button ></div>
             <QrReader
             className="my-2"
             delay={delay}
             style={previewStyle}
+            facingMode={cameramode}
             onError={handleError}
             onScan={handleScan}
             />
