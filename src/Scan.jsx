@@ -8,7 +8,7 @@ const Scan = () => {
 
   const [delay,setDelay] = useState(100)
   const [result,setResult] = useState('No result')
-  const [cameramode,setCameraMode] = useState('front')
+  const [cameramode,setCameraMode] = useState('rear')
   const [isFound,setIsFound] = useState(false)
 
   const previewStyle = {
@@ -31,7 +31,11 @@ const Scan = () => {
 
 
   const toggleCameraMode = () => {
-    setCameraMode((currentMode) => (currentMode === 'front' ? 'rear' : 'front'));
+    if(cameramode === 'front'){
+      setCameraMode('rear');
+    }else{
+      setCameraMode('front');
+    }
   };
 
   const HandleRescan = ()=>{
