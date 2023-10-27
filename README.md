@@ -1,1 +1,1 @@
-
+generate/scan => QRcode
